@@ -1,0 +1,118 @@
+:root {
+	--cell: #c0c0c0;
+	--highlight: #fff;
+	--shadow: #808080;
+}
+
+.cell {
+	background-color: var(--cell);
+	width: 16px;
+	height: 16px;
+	box-sizing: border-box;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	background-color: var(--cell);
+	padding: 4px 7px 4px 5px;
+}
+
+.border {
+	border-top: 2px solid var(--highlight);
+	border-left: 2px solid var(--highlight);
+	border-bottom: 2px solid var(--shadow);
+	border-right: 2px solid var(--shadow);
+}
+
+.border-inverse {
+	border-bottom: 2px solid var(--highlight);
+	border-right: 2px solid var(--highlight);
+	border-top: 2px solid var(--shadow);
+	border-left: 2px solid var(--shadow);
+}
+
+.border-thin {
+	border-width: 1px;
+}
+
+.cell .sprite {
+	position: absolute;
+
+}
+
+.sprite {
+	image-rendering: pixelated;
+	height: fit-content;
+	width: fit-content;
+}
+
+.timer {
+	display: inline-flex;
+	background-color: black;
+}
+
+.board {
+	border-width: 3px;
+}
+
+.digit {
+	display: flex;
+}
+
+.restart {
+	margin-top: 1px;
+	height: fit-content;
+	background-color: var(--cell);
+	display: inline-flex;
+	flex: 0;
+	box-shadow: 0 0 0 1px var(--shadow);
+}
+
+.divider {
+	background-color: var(--cell);
+	height: 6px;
+}
+
+.game-border {
+	width: fit-content;
+	border: 6px solid var(--cell);
+}
+
+.outer-border {
+	width: fit-content;
+}
+
+.d1 .d1 {
+	fill: red;
+}
+.d2 .d2 {
+	fill: red;
+}
+.d3 .d3 {
+	fill: red;
+}
+.d4 .d4 {
+	fill: red;
+}
+.d5 .d5 {
+	fill: red;
+}
+.d6 .d6 {
+	fill: red;
+}
+.d7 .d7 {
+	fill: red;
+}
+.d8 .d8 {
+	fill: red;
+}
+.d9 .d9 {
+	fill: red;
+}
+.d0 .d0 {
+	fill: red;
+}
+.d- .minus {
+	fill: red;
+}

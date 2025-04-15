@@ -1,0 +1,10 @@
+<!DOCTYPE svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="13" height="23" viewBox="0 0 13 23" fill="#600000">
+  <path class="d0 d4 d5 d6 d8 d9" d="m1 1.75v9.25l2.5-2.5v-4.25z"/>
+  <path class="d0 d2 d3 d5 d6 d7 d8 d9" d="m1.875 1h9.25l-2.5 2.5h-4.25z"/>
+  <path class="d0 d1 d2 d3 d4 d7 d8 d9" d="m12 1.75v9.25l-2.5-2.5v-4.25z"/>
+  <path class="d0 d2 d6 d8" d="m1 12v9.25l2.5-2.5v-4.25z"/>
+  <path class="d0 d1 d3 d4 d5 d6 d7 d8 d9" d="m12 12v9.25l-2.5-2.5v-4.25z"/>
+  <path class="d0 d2 d3 d5 d6 d8 d9" d="m1.875 22h9.25l-2.5-2.5h-4.25z"/>
+  <path class="d2 d3 d4 d5 d6 d8 d9 minus" d="m2 11.5l1.5-1.5h6l1.5 1.5l-1.5 1.5h-6z"/>
+</svg>
