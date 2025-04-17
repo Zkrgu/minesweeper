@@ -36,6 +36,12 @@ export const boardPresets = [
 		board: [0, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	},
 	{
+		name: "1-2-1 Corner",
+		width: 3,
+		height: 3,
+		board: [9, 0, 0, 0, 0, 0, 0, 0, 9],
+	},
+	{
 		name: "2-3-1 Corner",
 		width: 3,
 		height: 3,

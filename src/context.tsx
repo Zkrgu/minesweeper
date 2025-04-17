@@ -9,7 +9,8 @@ import {
 	numberSquares,
 	win,
 } from "./board";
-import { flagSolved, solveBoard } from "./solver";
+import { highlightSolved, resetSolved, solveBoard } from "./solver";
+import { getProbabilities } from "./solver/entropy";
 
 const defaultState = {
 	board: [],
@@ -26,7 +27,14 @@ const defaultState = {
 	flag(idx: number) {},
 	chord(idx: number) {},
 	solve() {},
-	loadBoard() {},
+	loadBoard(options: {
+		width: number;
+		height: number;
+		mineCount?: number;
+		board?: number[];
+	}) {},
+	solver: "",
+	setSolver() {},
 };
 
 const GameContext = createContext(defaultState);
@@ -40,15 +48,22 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 	const [running, setRunning] = useState(false);
 	const [startTime, setStartTime] = useState(0);
 	const [firstMove, setFirstMove] = useState(true);
+	const [solver, setSolver] = useState("trivial");
+	const [showProb, setShowProb] = useState(false);
+
+	const probabilities = getProbabilities(width, height, mineCount, userBoard);
 
 	function solve() {
-		console.log("solving");
-		for (let i = 0; i < 100; ++i) {
-			const [mines, safe] = solveBoard(width, height, mineCount, userBoard);
-			if (mines.size == 0 && safe.size == 0) break;
-			flagSolved(width, height, userBoard, board, mines, safe);
-			setUserBoard([...userBoard]);
-		}
+		resetSolved(userBoard);
+		const [mines, safe] = solveBoard(
+			solver,
+			width,
+			height,
+			mineCount,
+			userBoard,
+		);
+		highlightSolved(width, height, userBoard, board, mines, safe);
+		setUserBoard([...userBoard]);
 	}
 
 	function loadBoard({
@@ -141,6 +156,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 				mineCount,
 				solve,
 				loadBoard,
+				probabilities,
+				solver,
+				setSolver,
+				showProb,
+				setShowProb,
 			}}
 		>
 			{children}

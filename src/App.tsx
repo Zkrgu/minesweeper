@@ -46,8 +46,25 @@ function TestBoardLoader() {
 }
 
 function SolveButton() {
-	const { solve } = useGame();
-	return <button onClick={() => solve()}>solve</button>;
+	const { solve, solver, setSolver, showProb, setShowProb } = useGame();
+	return (
+		<>
+			<select value={solver} onChange={(ev) => setSolver(ev.target.value)}>
+				<option value="trivial">Trivial</option>
+				<option value="gauss">Gaussian Elimination</option>
+				<option value="entropy">Entropy Solver</option>
+			</select>
+			<button onClick={() => solve()}>solve</button>
+			<label>
+				<input
+					value={showProb}
+					onChange={(ev) => setShowProb(ev.target.checked)}
+					type="checkbox"
+				/>
+				Show probabilities
+			</label>
+		</>
+	);
 }
 
 function Header() {
@@ -122,7 +139,8 @@ function Counter({ digits, count }: { digits: number; count: number }) {
 }
 
 function Board() {
-	const { width, height, userBoard } = useGame();
+	const { width, height, userBoard, probabilities } = useGame();
+
 	return (
 		<div className="board border-inverse">
 			{new Array(height).fill(0).map((_, i) => (
@@ -131,6 +149,7 @@ function Board() {
 						<Square
 							index={i * width + j}
 							num={userBoard[i * width + j]}
+							prob={probabilities[i * width + j]}
 							key={j}
 						/>
 					))}
@@ -140,10 +159,18 @@ function Board() {
 	);
 }
 
-function Square({ index, num }: { index: number; num: number }) {
+function Square({
+	index,
+	num,
+	prob,
+}: {
+	index: number;
+	num: number;
+	prob: number;
+}) {
 	if (num >= 0) return <RevealedSquare index={index} mines={num} />;
 
-	const { reveal, flag } = useGame();
+	const { reveal, flag, showProb } = useGame();
 
 	function handleContextMenu(ev) {
 		ev.preventDefault();
@@ -160,6 +187,11 @@ function Square({ index, num }: { index: number; num: number }) {
 				backgroundColor: num === -3 ? "coral" : num === -4 ? "aquamarine" : "",
 			}}
 		>
+			{showProb && (
+				<span style={{ fontSize: "0.5rem", position: "absolute" }}>
+					{Math.round(prob * 100)}
+				</span>
+			)}
 			{num == -2 && (
 				<Flag style={{ position: "absolute", top: -2, left: -2 }} />
 			)}
